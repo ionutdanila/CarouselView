@@ -7,73 +7,16 @@
     tools:context=".SampleCarouselViewActivity">
 
   <carouselview.CarouselView
-      android:id="@+id/carouselView"
-      android:layout_width="match_parent"
-      android:layout_height="200dp"
-      android:background="#444"
-      app:autoPlay="true"
-      app:fillColor="#FFFFFFFF"
-      app:pageColor="#00000000"
-      app:indicatorGravity="top"
-      app:radius="6dp"
-      app:pageTransformInterval="1500"
-      app:pageTransformer="depth"
-      app:animateOnBoundary="true"
-      app:slideInterval="3000"
-      app:strokeColor="#FF777777"
-      app:strokeWidth="1dp" />
-
-  <TextView
-      android:id="@+id/carouselLabel"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/carouselView"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="15dp"
-      android:fontFamily="sans-serif-light"
-      android:gravity="center_horizontal"
-      android:text="Yummy Fruits"
-      android:textColor="@android:color/black"
-      android:textSize="18sp" />
-
-  <carouselview.CarouselView
       android:id="@+id/customCarouselView"
-      android:layout_width="match_parent"
-      android:layout_height="200dp"
-      android:layout_below="@+id/carouselLabel"
-      android:layout_marginTop="20dp"
-      app:disableAutoPlayOnUserInteraction="true"
-      app:fillColor="#FFFFFFFF"
-      app:pageColor="#00000000"
-      app:radius="6dp"
-      app:strokeColor="#FF777777"
-      app:strokeWidth="1dp" />
-
-  <TextView
-      android:id="@+id/customCarouselLabel"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/customCarouselView"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="15dp"
-      android:fontFamily="sans-serif-light"
-      android:gravity="center_horizontal"
-      android:text="Custom Views"
-      android:textColor="@android:color/black"
-      android:textSize="18sp" />
-
-  <Button
-      android:id="@+id/pauseButton"
+      android:layout_height="120dp"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/customCarouselLabel"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="15dp"
-      android:fontFamily="sans-serif-light"
-      android:gravity="center"
-      android:text="Pause"
-      android:textAllCaps="false"
-      android:textColor="@android:color/black"
-      android:textSize="16sp" />
+      android:layout_below="@+id/carouselLabel"
+      app:disableAutoPlayOnUserInteraction="true"
+      app:autoPlay="false"
+      app:fillColor="#FF093B88"
+      app:pageColor="#FFF"
+      app:radius="6dp"
+      app:strokeColor="#FF093B88"
+      app:strokeWidth="1dp" />
 
 </RelativeLayout>

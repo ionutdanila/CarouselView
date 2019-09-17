@@ -1,4 +1,5 @@
 using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.View;
@@ -6,10 +7,11 @@ using Android.Util;
 using Android.Views;
 using Java.Interop;
 using Java.Lang;
+using Math = System.Math;
 
 namespace CarouselView
 {
-    public class CirclePageIndicator : View, IPageIndicator
+    public sealed class CirclePageIndicator : View, IPageIndicator
     {
         const int HORIZONTAL = 0;
         const int VERTICAL = 1;
@@ -43,16 +45,17 @@ namespace CarouselView
 
         public CirclePageIndicator(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
         {
-            //Load defaults from resources
-            var res = Resources;
-            int defaultPageColor = res.GetColor(Resource.Color.default_circle_indicator_page_color);
-            int defaultFillColor = res.GetColor(Resource.Color.default_circle_indicator_fill_color);
-            int defaultOrientation = res.GetInteger(Resource.Integer.default_circle_indicator_orientation);
-            int defaultStrokeColor = res.GetColor(Resource.Color.default_circle_indicator_stroke_color);
-            float defaultStrokeWidth = res.GetDimension(Resource.Dimension.default_circle_indicator_stroke_width);
-            float defaultRadius = res.GetDimension(Resource.Dimension.default_circle_indicator_radius);
-            bool defaultCentered = res.GetBoolean(Resource.Boolean.default_circle_indicator_centered);
-            bool defaultSnap = res.GetBoolean(Resource.Boolean.default_circle_indicator_snap);
+#pragma warning disable 618
+            int defaultPageColor = Resources.GetColor(Resource.Color.default_circle_indicator_page_color);
+            int defaultFillColor = Resources.GetColor(Resource.Color.default_circle_indicator_fill_color);
+            int defaultStrokeColor = Resources.GetColor(Resource.Color.default_circle_indicator_stroke_color);
+#pragma warning restore 618
+
+            int defaultOrientation = Resources.GetInteger(Resource.Integer.default_circle_indicator_orientation);
+            float defaultStrokeWidth = Resources.GetDimension(Resource.Dimension.default_circle_indicator_stroke_width);
+            float defaultRadius = Resources.GetDimension(Resource.Dimension.default_circle_indicator_radius);
+            bool defaultCentered = Resources.GetBoolean(Resource.Boolean.default_circle_indicator_centered);
+            bool defaultSnap = Resources.GetBoolean(Resource.Boolean.default_circle_indicator_snap);
 
             //Retrieve styles attributes
             var a = context.ObtainStyledAttributes(attrs, Resource.Styleable.CirclePageIndicator, defStyle, 0);
@@ -76,7 +79,6 @@ namespace CarouselView
 
             var configuration = ViewConfiguration.Get(context);
             mTouchSlop = ViewConfigurationCompat.GetScaledPagingTouchSlop(configuration);
-
         }
 
         public void SetCentered(bool centered)
@@ -254,7 +256,7 @@ namespace CarouselView
                 }
 
                 // Only paint stroke if a stroke width was non-zero
-                if (pageFillRadius != mRadius)
+                if (Math.Abs(pageFillRadius - mRadius) > double.Epsilon)
                 {
                     canvas.DrawCircle(dX, dY, mRadius, mPaintStroke);
                 }
